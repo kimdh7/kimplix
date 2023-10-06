@@ -65,8 +65,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-weight: 300;
     font-family: 'Source Sans Pro', sans-serif;
-    color:black;
+    color:${(props) => props.theme.white.darker};
     line-height: 1.2;
+    background-color: black;
 
   }
   a {
@@ -78,10 +79,12 @@ const GlobalStyle = createGlobalStyle`
 ReactDOM.render(
     <React.StrictMode>
         <RecoilRoot>
-            <ThemeProvider theme={theme}>
-                <GlobalStyle />
-                <App />
-            </ThemeProvider>
+            <QueryClientProvider client={client}>
+                <ThemeProvider theme={theme}>
+                    <GlobalStyle />
+                    <App />
+                </ThemeProvider>
+            </QueryClientProvider>
         </RecoilRoot>
     </React.StrictMode>,
 document.getElementById("root")
